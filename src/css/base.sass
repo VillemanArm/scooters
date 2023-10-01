@@ -4,16 +4,28 @@
 
 @import normalize
 
-// @font-face 
-//     font-family: 'Roboto'
-//     src: url('../fonts/Roboto_700.woff2')
-//     font-style: normal
-//     font-weight: 700
+@font-face 
+    font-family: 'YS'
+    src: url('../fonts/text-regular.woff')
+    font-style: normal
+    font-weight: 400
+
+@font-face 
+    font-family: 'YS'
+    src: url('../fonts/text-black.woff')
+    font-style: normal
+    font-weight: 900
+
+@font-face 
+    font-family: 'YS'
+    src: url('../fonts/text-medium.woff')
+    font-style: normal
+    font-weight: 500
 
 
-// $header-font: Roboto
-// $primary-color: #FFFBF5
-// $second-color: #F0B94D
+$header-font: 'YS', sans-serif
+$primary-color: #21201F
+$second-color: #FFDE40
 // $background-color: #37343A
 // $block-color: #636362
 // $dark-background-color: #333036
@@ -31,20 +43,25 @@ html
     font-size: 10px
 
 
-// body
-//     background-color: $background-color
-//     font-family: 'Inter', sans-serif
-//     color: $primary-color
+body
+    // background-color: $background-color
+    font-family: 'YS', sans-serif
+    color: $primary-color
 
-// a
-//     color: $primary-color
-//     text-decoration: none
+a
+    color: $primary-color
+    text-decoration: none
 
 
-// h1
-//     font-family: $header-font
-//     font-size: 6.6rem
-//     margin: 0
+h1
+    margin: 0
+
+    font-family: $header-font
+    font-size: 7.2rem
+    font-weight: 900
+    line-height: 100%
+    letter-spacing: -0.144rem
+    
 
 // h2 
 //     font-family: $header-font
@@ -62,21 +79,24 @@ img
     object-fit: contain
 
 .container
-    width: 120em
+    width: 91.5rem
     margin-left: auto
     margin-right: auto
 
-// button
-//     display: block
-//     padding: 1.4rem 3.1rem
-//     box-sizing: border-box
+    opacity: 1
 
-//     font-size: 2.7rem
+.button
+    display: inline-block
+    padding: 1.6rem 4.8rem
+    box-sizing: border-box
 
-//     background-color: $second-color
-//     border: 0.3rem solid $second-color
-//     border-radius: 1.1rem
-//     color: $primary-color
+    font-size: 2.4rem
+    text-align: center
+
+    background-color: $second-color
+    border: 0.3rem solid $second-color
+    border-radius: 3.6rem
+    color: $primary-color
 
 @media (max-width: 82em)
     html 
@@ -118,6 +138,6 @@ img
 
     //     border-radius: 0.8rem
 
-// @import blocks/header
+@import blocks/hero
 
 
