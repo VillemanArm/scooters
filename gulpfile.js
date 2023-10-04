@@ -33,99 +33,106 @@ const connect = ftp.create(ftpSettings);
 
 const htmlTask = () => { // задача (обычная js функция)
     return src("./src/*.html") // чтение данных для обработки
-    .pipe(plumber({ // замена стандартного обработчика ошибок
-        errorHandler: notify.onError(error => ({
-            title: 'HTML',
-            message: error.message
+        .pipe(plumber({ // замена стандартного обработчика ошибок
+            errorHandler: notify.onError(error => ({
+                title: 'HTML',
+                message: error.message
+            }))
         }))
-    }))
-    .pipe(fileInclude({ // импорт html шаблонов в файлы html подключение: @@include('путь к шаблону относительно файла')
-        prefix: '@@',
-        basepath: '@file'
-    }))
-    .pipe(webpHtml())
-    .pipe(htmlmin({          // любое количество плагинов
-        collapseWhitespace: true,
-    })) 
-    .pipe(dest("./dist")) // запись данных после обработки
-    .pipe(browserSync.stream()); //изменение отображения без перезагрузки страницы
+        .pipe(fileInclude({ // импорт html шаблонов в файлы html подключение: @@include('путь к шаблону относительно файла')
+            prefix: '@@',
+            basepath: '@file'
+        }))
+        .pipe(webpHtml())
+        .pipe(htmlmin({          // любое количество плагинов
+            collapseWhitespace: true,
+        }))
+        .pipe(dest("./dist")) // запись данных после обработки
+        .pipe(browserSync.stream()); //изменение отображения без перезагрузки страницы
 
 }
 
-const fontsTask = () => { 
+const fontsTask = () => {
     return src("./src/fonts/**/*.*") //{ttf, woff, eot, svg}
-    .pipe(newer("./dist/fonts/"))
-    // .pipe(fonter({ //конвертер форматов eot, svg. Не передавать в него ничего другого!
-    //     formats: ["ttf", "woff", "eot", "svg"]
-    // }))
-    .pipe(dest("./dist/fonts")) 
-    .pipe(browserSync.stream()); 
+        .pipe(newer("./dist/fonts/"))
+        // .pipe(fonter({ //конвертер форматов eot, svg. Не передавать в него ничего другого!
+        //     formats: ["ttf", "woff", "eot", "svg"]
+        // }))
+        .pipe(dest("./dist/fonts"))
+        .pipe(browserSync.stream());
 
 }
 
-const worksTransferingTask = () => { 
+const worksTransferingTask = () => {
     return src("./src/works/**/*.*")
-    .pipe(newer("./dist/"))
-    .pipe(dest("./dist/works/")) 
-    .pipe(browserSync.stream()); 
+        .pipe(newer("./dist/"))
+        .pipe(dest("./dist/works/"))
+        .pipe(browserSync.stream());
 
 }
 
-const filesTransferingTask = () => { 
+const filesTransferingTask = () => {
     return src("./src/files/*.*")
-    .pipe(newer("./dist/"))
-    .pipe(dest("./dist/files")) 
-    .pipe(browserSync.stream()); 
+        .pipe(newer("./dist/"))
+        .pipe(dest("./dist/files"))
+        .pipe(browserSync.stream());
 }
 
-const librariesTransferingTask = () => { 
+const JSLibrariesTransferingTask = () => {
     return src("./src/js/libraries/*.*")
-    .pipe(newer("./dist/js/libraries/"))
-    .pipe(dest("./dist/js/libraries/")) 
-    .pipe(browserSync.stream()); 
+        .pipe(newer("./dist/js/libraries/"))
+        .pipe(dest("./dist/js/libraries/"))
+        .pipe(browserSync.stream());
 }
 
-const sassTask = () => { 
-    return src("./src/css/*.sass", {sourcemaps: isDev}) 
-        .pipe(plumber({ 
+const CSSLibrariesTransferingTask = () => {
+    return src("./src/css/libraries/*.*")
+        .pipe(newer("./dist/css/libraries/"))
+        .pipe(dest("./dist/css/libraries/"))
+        .pipe(browserSync.stream());
+}
+
+const sassTask = () => {
+    return src("./src/css/*.sass", { sourcemaps: isDev })
+        .pipe(plumber({
             errorHandler: notify.onError(error => ({
                 title: 'SASS',
                 message: error.message
             }))
         }))
 
-    .pipe(sass()) // преобразование sass в css
-    
-    .pipe(webpCss())
-    .pipe(autoprefixer())
-    .pipe(shorthand()) // сокращение свойств, которые можно сократить
-    .pipe(groupCssMediaQueries()) // сборка одинаковых медиа запросов в одно место
-    .pipe(csso()) // минификация файла
-    .pipe(concat("style.css"))
-    .pipe(dest("./dist/css/", {sourcemaps: isDev})) 
-    .pipe(browserSync.stream())
+        .pipe(sass()) // преобразование sass в css
+
+        .pipe(webpCss())
+        .pipe(autoprefixer())
+        .pipe(shorthand()) // сокращение свойств, которые можно сократить
+        .pipe(groupCssMediaQueries()) // сборка одинаковых медиа запросов в одно место
+        .pipe(csso()) // минификация файла
+        .pipe(concat("style.css"))
+        .pipe(dest("./dist/css/", { sourcemaps: isDev }))
+        .pipe(browserSync.stream())
 
 
 }
 
-const jsTask = () => { 
-    return src("./src/js/*.js", {sourcemaps: isDev}) 
-        .pipe(plumber({ 
+const jsTask = () => {
+    return src("./src/js/*.js", { sourcemaps: isDev })
+        .pipe(plumber({
             errorHandler: notify.onError(error => ({
                 title: 'JavaScript',
                 message: error.message
             }))
         }))
-        .pipe(webpack(require('./webpack.config.js')))       
-        .pipe(dest("./dist/js/", {sourcemaps: isDev})) 
+        .pipe(webpack(require('./webpack.config.js')))
+        .pipe(dest("./dist/js/", { sourcemaps: isDev }))
 
-    }
-    // .pipe(concat("script.js"))
-    // .pipe(babel()) // перевод на ES5 для старых браузеров
+}
+// .pipe(concat("script.js"))
+// .pipe(babel()) // перевод на ES5 для старых браузеров
 
-const imgTask = () => { 
-    return src("./src/img/**/*.*") 
-        .pipe(plumber({ 
+const imgTask = () => {
+    return src("./src/img/**/*.*")
+        .pipe(plumber({
             errorHandler: notify.onError(error => ({
                 title: 'Images',
                 message: error.message
@@ -134,14 +141,14 @@ const imgTask = () => {
         .pipe(newer("./dist/img/")) // обновление только необработанных картинок
         .pipe(webp()) // конвертация картинок в webp
         .pipe(dest("./dist/img/")) // запись картинок в webp
-        .pipe(src("./src/img/**/*.*")) 
+        .pipe(src("./src/img/**/*.*"))
         .pipe(newer("./dist/img/"))
         .pipe(imagemin({ // минификация картинок
             verbose: true
         }))
-        .pipe(dest("./dist/img/")) 
-        .pipe(browserSync.stream()); 
-    }
+        .pipe(dest("./dist/img/"))
+        .pipe(browserSync.stream());
+}
 
 // наблюдение
 const watcher = (cb) => {
@@ -158,8 +165,8 @@ const watcher = (cb) => {
 // Удаление директории сборки для ее обновления
 const clear = (cb) => {
     if (isProd) {
-        return src("./dist", {read: false, allowEmpty: true})
-        .pipe(clean())
+        return src("./dist", { read: false, allowEmpty: true })
+            .pipe(clean())
     }
     cb()
 }
@@ -178,9 +185,9 @@ const server = (cb) => {
 
 //заливка на сервер
 const deploy = () => {
-    return src('dist/**/*.*', {buffer: false})
-    .pipe(connect.newer('/domains/insight-webstudio.ru/')) // указать папку домена в корне хостинга
-    .pipe(connect.dest('/domains/insight-webstudio.ru/'))
+    return src('dist/**/*.*', { buffer: false })
+        .pipe(connect.newer('/domains/insight-webstudio.ru/')) // указать папку домена в корне хостинга
+        .pipe(connect.dest('/domains/insight-webstudio.ru/'))
 }
 
 
@@ -193,7 +200,8 @@ exports.imgTask = imgTask
 exports.fontsTask = fontsTask
 exports.worksTransferingTask = worksTransferingTask
 exports.filesTransferingTask = filesTransferingTask
-exports.librariesTransferingTask = librariesTransferingTask
+exports.JSLibrariesTransferingTask = JSLibrariesTransferingTask
+exports.CSSLibrariesTransferingTask = CSSLibrariesTransferingTask
 exports.deploy = deploy
 
 
@@ -202,11 +210,12 @@ exports.default = series(   // последовательный список з�
     clear,
     htmlTask,
     sassTask,
-    jsTask, 
+    jsTask,
     imgTask,
     fontsTask,
     worksTransferingTask,
     filesTransferingTask,
-    librariesTransferingTask,
+    JSLibrariesTransferingTask,
+    CSSLibrariesTransferingTask,
     parallel(watcher, server) // список задач, выполняемых параллельно
-    )
+)

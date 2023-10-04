@@ -5,9 +5,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="css/libraries/swiper-bundle.css"> -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="shortcut icon" href="img/icon/favicon.png" type="image/png">
     <script defer src="js/libraries/just-validate.production.min.js"></script>
+    <script defer src='js/libraries/swiper-bundle.js'></script>
     <script defer src='js/index.js'></script>
     <title>Клуб самокатов</title>
     <meta name="description" content="Клуб самокатов">
@@ -53,7 +55,7 @@
         </section>
 
         <section class="advantages container">
-            <h2 class="advantages__header">Вот что даёт участие в клубе</h2>
+            <h2 class="advantages__header">Вот что даёт участие в клубе</h2>
             <div class="advantages__wrapper">
 
                 <div class="advantages__item">
@@ -88,25 +90,50 @@
                 </div>
             </div>
         </section>
-        <section class="events container">
-            <h3 class="evens__header">Эксклюзивный доступ к событиям Самокатов</h3>
-            <p class="events__description">С абонементом — у вас доступ к специальным мероприятиям, скидки и классный
-                мерч. В 2023 году мы танцевали на Даче Плюс с Антохой MC, катались на самокатах с Сергеем Мезенцевым и
-                слушали хор Attaque de Panique</p>
-            <div class="events__img-wrapper">
-                <div>
-                    <div class="events__img"><img src="img/events/img1.png" alt="вечеринка"></div>
-                    <div class="events__img"><img src="img/events/img2.png" alt="вечеринка"></div>
+
+        <section class="events">
+            <div class="container">
+                <h3 class="evens__header">Эксклюзивный доступ к событиям Самокатов</h3>
+                <p class="events__description">С абонементом — у вас доступ к специальным мероприятиям, скидки и
+                    классный
+                    мерч. В 2023 году мы танцевали на Даче Плюс с Антохой MC, катались на самокатах с Сергеем Мезенцевым
+                    и
+                    слушали хор Attaque de Panique</p>
+                <div class="events__img-wrapper">
+                    <div>
+                        <div class="events__img"><img src="img/events/img1.png" alt="вечеринка"></div>
+                        <div class="events__img"><img src="img/events/img2.png" alt="вечеринка"></div>
+                    </div>
+                    <div>
+                        <div class="events__img"><img src="img/events/img3.png" alt="мерч"></div>
+                        <div class="events__img"><img src="img/events/img4.png" alt="мерч"></div>
+                    </div>
+
                 </div>
-                <div>
-                    <div class="events__img"><img src="img/events/img3.png" alt="мерч"></div>
-                    <div class="events__img"><img src="img/events/img4.png" alt="мерч"></div>
+                <div class="events__img-upper"><img src="img/events/quotes.png" alt="кавычки"></div>
+                <div class="events__img-upper"><img src="img/events/location.png" alt="геолокация"></div>
+                <div class="events__img-upper"><img src="img/events/cup.png" alt="стакан"></div>
+            </div>
+
+            <div class="swiper events__slider">
+                <!-- Additional required wrapper -->
+                <div class="swiper-wrapper">
+                    <!-- Slides -->
+                    <div class="swiper-slide"><img src="img/events/img1.png" alt="вечеринка"></div>
+                    <div class="swiper-slide"><img src="img/events/img2.png" alt="вечеринка"></div>
+                    <div class="swiper-slide"><img src="img/events/img3.png" alt="мерч"></div>
+                    <div class="swiper-slide"><img src="img/events/img4.png" alt="мерч"></div>
                 </div>
 
+                <!-- If we need navigation buttons -->
+                <div class="events__slider-button-wrapper">
+                    <div class="swiper-button-prev"><img src="img/events/prev.svg" alt="предыдущий">
+                    </div>
+                    <div class="swiper-button-next"><img src="img/events/next.svg" alt="следующий"></div>
+                </div>
+
+
             </div>
-            <div class="events__img-upper"><img src="img/events/quotes.png" alt="кавычки"></div>
-            <div class="events__img-upper"><img src="img/events/location.png" alt="геолокация"></div>
-            <div class="events__img-upper"><img src="img/events/cup.png" alt="стакан"></div>
         </section>
     </main>
     <footer>

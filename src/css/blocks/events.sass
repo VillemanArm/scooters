@@ -13,7 +13,7 @@
     gap: 2.2rem
     transform: rotate(2deg)
     top: 18.4rem
-    left: -0.9rem
+    left: 48.5rem
 
     &>div
         display: flex
@@ -35,15 +35,87 @@
 
     &:nth-child(4)
         width: 28rem
-        left: 78rem
+        left: 127.4rem
         top: 10rem
 
     &:nth-child(5)
         width: 36rem
-        left: -21rem
+        left: 28.4rem
         top: 35.5rem
 
     &:nth-child(6)
         width: 43rem
-        left: 67rem
+        left: 116.4rem
         top: 90.5rem
+
+.events__slider
+    display: none
+
+@media (max-width: 768px)
+    // .events__slider
+    //     padding-bottom: 14.4rem
+
+    .evens__header
+        width: 100%
+
+    .events__description
+        width: 100%
+        padding-bottom: 4.2rem
+
+    .events__img-wrapper
+        display: none
+
+    .events__img-upper
+        position: absolute
+
+        &:nth-child(4)
+            width: 14rem
+            left: 24.4rem
+            top: 28rem
+            z-index: 11
+
+        &:nth-child(5)
+            display: none
+
+        &:nth-child(6)
+            display: none
+
+    .events__slider
+        display: block
+
+    .swiper
+        width: 34.4rem
+        height: 41.5rem
+        margin: 0 auto 14.4rem auto
+
+    .swiper-slide
+        width: 34.4rem
+        height: 34.4rem
+        
+
+        & img
+            border-radius: 4.8rem
+
+    .events__slider-button-wrapper
+        position: relative
+        display: flex
+        justify-content: center
+        gap: 1.6rem
+        top: -2.4rem
+
+
+        & div
+            width: 4.8rem
+
+    .swiper-button-prev
+        position: relative
+        margin-right: 1.6rem
+
+        &::after
+            display: none    
+
+    .swiper-button-next
+        position: relative
+
+        &::after
+            display: none    

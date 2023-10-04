@@ -1,0 +1,1 @@
+!function(){"use strict";new Swiper(".slider",{loop:!0,navigation:{nextEl:".swiper-button-next",prevEl:".swiper-button-prev"}})}();
