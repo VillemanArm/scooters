@@ -1,7 +1,10 @@
 'use strict';
 
-import openBlock from "./modules/slider";
 
+import slider from "./modules/slider"
+import scrollButton from "./modules/scrollButton"
+
+scrollButton()
 
 
 
